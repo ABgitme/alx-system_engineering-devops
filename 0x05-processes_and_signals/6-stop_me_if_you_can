@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Stop the "4-to_infinity_and_beyond" process using a signal-sending tool.
+# Find the PID of the 4-to_infinity_and_beyond process
+pid=$(pgrep -f "4-to_infinity_and_beyond")
+# Check if the PID was found
+if [[ -n $pid ]]; then
+    # Use a signal-sending tool like "pkill" or "xkill"
+    pkill -f "4-to_infinity_and_beyond"  # Option 1: Use pkill
+    # xkill -id "$pid"  # Option 2: Use xkill (if available)
+    echo "Terminated"
+else
+    echo "Process 4-to_infinity_and_beyond not found."
+fi
