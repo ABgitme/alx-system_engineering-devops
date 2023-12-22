@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Terminate the "invincible" process, even if it resists initial attempts.
+# Find the PID of the process
+pid=$(pgrep -f "7-highlander")
+
+# Check if the PID was found
+if [[ -n $pid ]]; then
+
+    # Forceful termination if still running
+    if [[ -d "/proc/$pid" ]]; then
+        echo "Process $pid is resisting termination. Proceeding with SIGKILL."
+        kill -SIGKILL "$pid"
+        echo "Process $pid has been forcefully terminated."
+    fi
+else
+    echo "Process not found."
+fi
