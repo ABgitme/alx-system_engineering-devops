@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Display lines containing the "bash" word from process list.
+# shellcheck disable=SC2009
+ps axo user,pid,pcpu,pmem,vsz,rss,tty,stat,start,time,command --sort=-start | \
+    awk 'NR==1 {print $0} NR>1 {if ($11 ~ /bash/) printf("%-8s %-6s %-4s %-4s %-6s %-6s %-8s %-4s %-8s %-5s %s\n",$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)}'
