@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Check if ss is available
+if command -v ss &> /dev/null; then
+    command="ss"
+else
+    command="netstat"
+fi
+
+# Print header for TCP and UDP sockets
+echo "Active Internet connections (only servers)"
+echo "Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name"
+
+# Show TCP listening sockets with PID and program name
+"$command" -tpln | awk '{print $1, $2, $3, $4, $5, $6, $7}'
+
+# Print header for UNIX domain sockets
+echo "Active UNIX domain sockets (only servers)"
+echo "Proto RefCnt Flags       Type       State         I-Node   PID/Program name    Path"
+
+# Show UNIX domain sockets with PID and program name
+"$command" -xpln | awk '{print $1, $2, $3, $4, $5, $6, $7, $8}'
+
+exit 0
