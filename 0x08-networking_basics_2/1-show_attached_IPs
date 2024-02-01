@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Get active IPv4 IP addresses from ip command, excluding loopback and link-local addresses
+active_ips=$(ip -o addr show | awk '/inet / {gsub(/\/.*/, "", $4); print $4}')
+
+# Check if any IPs were found
+if [ -z "$active_ips" ]; then
+    echo "No active IPv4 IP addresses found."
+else
+    echo "$active_ips"
+fi

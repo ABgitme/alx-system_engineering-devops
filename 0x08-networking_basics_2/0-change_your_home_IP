@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# configures hostname resolution on an Ubuntu server.
+
+# Check if script is run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run as root" 1>&2
+    exit 1
+fi
+
+# 1. Back up the original hosts file
+sudo cp /etc/hosts /etc/hosts.backup
+# 2. Replace the localhost entry in the hosts file
+sudo sed -i 's/^127\.0\.0\.1\slocalhost$/127.0.0.2 localhost/' /etc/hosts
+
+# 3. Add the required entries to the hosts file
+
+sudo echo "8.8.8.8 facebook.com" >> /etc/hosts
+
+# Print success message
+echo "Hosts file configured successfully!"
