@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#!/bin/bash
+
+# Check for IP address argument
+if [ $# -eq 0 ]; then
+    echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+    exit 1
+fi
+
+# Store the IP address from the argument
+IP_ADDRESS=$1
+
+# Ping the IP address 5 times
+ping -c 5 "$IP_ADDRESS"
+
+# Check the ping exit status to determine if host is reachable
+#if [ $? -eq 0 ]; then
+#  echo "$IP_ADDRESS is reachable."
+#else
+# echo "$IP_ADDRESS is not reachable."
+#fi
