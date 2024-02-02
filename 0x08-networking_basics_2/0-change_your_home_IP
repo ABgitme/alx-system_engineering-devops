@@ -14,7 +14,7 @@ sudo sed -i 's/^127\.0\.0\.1\slocalhost$/127.0.0.2 localhost/' /etc/hosts
 
 # 3. Add the required entries to the hosts file
 
-sudo echo "8.8.8.8 facebook.com" >> /etc/hosts
+echo "8.8.8.8 facebook.com" | sudo tee -a /etc/hosts
 
 # Print success message
 echo "Hosts file configured successfully!"
