@@ -3,3 +3,7 @@ package { 'flask':
   ensure   => '2.1.0',
   provider => 'pip3',
 }
+
+exec { 'python-installed':
+  command => '/usr/bin/which python3',
+}
