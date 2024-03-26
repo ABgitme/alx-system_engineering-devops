@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Generate RSA key pair with specific requirements
 # Check if the key already exists
 #if [ -f ~/.ssh/school ]; then
