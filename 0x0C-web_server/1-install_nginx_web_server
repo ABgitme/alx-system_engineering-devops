@@ -3,6 +3,6 @@
 apt-get update
 apt-get install -y nginx
 # Configure Nginx
-echo "Holberton School" > /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
 # Restart Nginx (without using systemctl)
-service nginx start
+service nginx restart
