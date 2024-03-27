@@ -2,5 +2,6 @@
 # Define the redirection configuration
 sudo su
 # Perform a 301 Redirection
-sudo sed -i '/server_name _;/a \    rewrite ^\/redirect_me https:\/\/youtube.com\/watch?v=QH2-TGUlwu4;' /etc/nginx/sites-enabled/default
+Target_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/youtube.com\/watch?v=QH2-TGUlwu4;"
+sed -i "s/server_name _;/$Target_string/" /etc/nginx/sites-enabled/default
 service nginx start
