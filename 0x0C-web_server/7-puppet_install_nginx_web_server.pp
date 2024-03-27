@@ -1,4 +1,4 @@
-# Automating project requirements using Puppet
+# Automating server configuration using Puppet
 
 package { 'nginx':
   ensure => installed,
