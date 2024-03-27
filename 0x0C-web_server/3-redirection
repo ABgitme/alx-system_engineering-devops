@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 # Define the redirection configuration
 sudo su
-redirection_config="location /redirect_me {
-    return 301 https://example.com/new_page;
-}"
-
-# Use sed to modify the default Nginx configuration file
-sed -i '/server {/a \\n'"$redirection_config" /etc/nginx/sites-available/default
+# Perform a 301 Redirection
+sudo sed -i '/server_name _;/a \    rewrite ^\/redirect_me https:\/\/youtube.com\/watch?v=QH2-TGUlwu4;' /etc/nginx/sites-enabled/default
 service nginx start
