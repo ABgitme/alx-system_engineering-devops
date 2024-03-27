@@ -7,4 +7,4 @@ ufw allow 'Nginx HTTP'
 # Configure Nginx
 echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
 # Restart Nginx (without using systemctl)
-service nginx start
+service nginx restart
