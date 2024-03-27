@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Define the redirection configuration
 sudo su
-TARGET_URL="https://www.youtube.com/watch?v=QH2-TGUlwu4"
+redirection_config="location /redirect_me {
+    return 301 https://example.com/new_page;
+}"
 
-# Modify default server block configuration
-sed -i 's/\/;/\n\tlocation \/redirect_me { return Moved Permanently "$TARGET_URL"; }\n;/' /etc/nginx/sites-available/default
+# Use sed to modify the default Nginx configuration file
+sed -i '/server {/a \\n'"$redirection_config" /etc/nginx/sites-available/default
 service nginx start
