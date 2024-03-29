@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Initialize a counter
 counter=0
 # Use a while loop to display "Best School" 10 times
