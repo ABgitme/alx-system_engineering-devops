@@ -1,12 +1,12 @@
 # Define a class for configuring custom HTTP response header
 
-exec { 'system update':
+exec { 'update system':
         command => '/usr/bin/apt-get update',
 }
 
 package { 'nginx':
   ensure  => 'installed',
-  require => Exec['system update'],
+  require => Exec['update system']
 }
 
 exec {'HTTP header':
