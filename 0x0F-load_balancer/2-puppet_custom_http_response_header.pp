@@ -6,17 +6,12 @@
   }
 
   # Configure custom HTTP response header using sed
-  file { '/etc/nginx/sites-enabled/default':
-    ensure      => present,
-    owner       => 'root',
-    group       => 'root',
-    mode        => '0644',
-
-    # Insert the line with `add_header` after any line containing "server_name _"
-    insert_line => after,
-    match       => /server_name _/,
-    line        => 'add_header X-Served-By $HOSTNAME;',
-  }
+  file_line { 'adding HTTP header':
+  ensure => 'present',
+  path   => '/etc/nginx/sites-available/default',
+  after  => 'listen 80 default_server;',
+  line   => 'add_header X-Served-By $hostname;'
+}
 
 
   # Restart Nginx to apply changes
