@@ -1,5 +1,4 @@
 # Define a class for configuring custom HTTP response header
-class custom_http_response_header {
 
   # Install Nginx package
   package { 'nginx':
@@ -8,7 +7,8 @@ class custom_http_response_header {
 
   # Configure custom HTTP response header using sed
   exec { 'add_custom_header':
-    command  => "sudo sed -i '/server_name _/a add_header X-Served-By ${::hostname};' /etc/nginx/sites-enabled/default",
+    command  => "sudo sed -i
+    '/server_name _/a add_header X-Served-By ${facts['networking']['hostname']};' /etc/nginx/sites-enabled/default",
     unless   => "grep -q 'X-Served-By' /etc/nginx/sites-enabled/default",
     provider => 'shell',
     require  => Package['nginx'],
@@ -25,11 +25,7 @@ class custom_http_response_header {
 
   # Restart Nginx to apply changes
   service { 'nginx':
-    ensure    => running,
-    enable    => true,
+    ensure  => running,
+    enable  => true,
     require => Package['nginx']
   }
-}
-
-# Apply the custom HTTP response header configuration
-include custom_http_response_header
