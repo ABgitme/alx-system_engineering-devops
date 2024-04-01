@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# Check if Nginx service is running and kill it
+if systemctl is-active --quiet nginx; then
+    kill "$(pgrep 'nginx' | head -1)"
+    echo "Nginx has been stopped"
+fi
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 # Restart Nginx to apply changes
 sudo systemctl restart nginx
