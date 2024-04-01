@@ -1,8 +1,14 @@
 # Define a class for configuring custom HTTP response header
 
+exec {'system update':
+  command => '/usr/bin/apt-get update'
+  user     => 'root',
+  provider => 'shell',
+}
   # Install Nginx package
   package { 'nginx':
     ensure => installed,
+    requires => Exec['system update']
   }
 
   # Configure custom HTTP response header using sed
