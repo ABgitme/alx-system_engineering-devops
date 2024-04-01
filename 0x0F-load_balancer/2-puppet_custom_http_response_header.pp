@@ -10,7 +10,7 @@ package { 'nginx':
 }
 
 exec {'HTTP header':
-  command  => 'sed -i "/server_name _/a\	add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default',
+  command  => 'sed -i "25i\	add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default',
   provider => 'shell'
 }
 
