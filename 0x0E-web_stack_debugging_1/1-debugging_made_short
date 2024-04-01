@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+# Restart Nginx to apply changes
+sudo systemctl restart nginx
