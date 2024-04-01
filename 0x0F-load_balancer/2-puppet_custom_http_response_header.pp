@@ -6,8 +6,9 @@ exec {'system update':
   provider => 'shell',
 }
   # Install Nginx package
-  -> package { 'nginx':
-    ensure   => 'present',
+  package { 'nginx':
+    ensure => 'installed',
+    require => Exec['system update']
   }
 
   # Configure custom HTTP response header using sed
