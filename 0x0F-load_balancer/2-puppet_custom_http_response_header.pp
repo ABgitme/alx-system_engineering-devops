@@ -1,22 +1,19 @@
 # Define a class for configuring custom HTTP response header
 
 exec {'system update':
-  command => '/usr/bin/apt-get update'
+  command  => 'apt-get update'
   user     => 'root',
   provider => 'shell',
 }
   # Install Nginx package
-  package { 'nginx':
-    ensure => installed,
-    requires => Exec['system update']
+  -> package { 'nginx':
+    ensure   => 'present',
   }
 
   # Configure custom HTTP response header using sed
-  file_line { 'adding HTTP header':
-  ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
-  after  => 'listen 80 default_server;',
-  line   => 'add_header X-Served-By $hostname;'
+  exec {'HTTP header':
+	command => 'sed -i "25i\	add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default',
+	provider => 'shell'
 }
 
 
