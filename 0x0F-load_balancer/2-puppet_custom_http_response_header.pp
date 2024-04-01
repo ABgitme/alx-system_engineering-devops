@@ -7,8 +7,7 @@
 
   # Configure custom HTTP response header using sed
   exec { 'add_custom_header':
-    command  => "sudo sed -i
-    '/server_name _/a add_header X-Served-By ${facts['networking']['hostname']};' /etc/nginx/sites-enabled/default",
+    command  => "sudo sed -i '/server_name _/a add_header X-Served-By ${::hostname};' /etc/nginx/sites-enabled/default",
     unless   => "grep -q 'X-Served-By' /etc/nginx/sites-enabled/default",
     provider => 'shell',
     require  => Package['nginx'],
