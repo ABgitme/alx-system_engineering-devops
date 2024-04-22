@@ -49,7 +49,6 @@ if __name__ == "__main__":
     one command-line argument which is the employee ID. It then calls the
     get_employee_todo_progress function with the provided employee ID.
     """
-    import sys
     if len(sys.argv) != 2:
         sys.exit(1)
 
