@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-# handle fetching of TODO list progress
+"""
+    Provides details on the progress of the
+    TODO list for a specified employee ID.
+"""
 import requests
 import sys
 
