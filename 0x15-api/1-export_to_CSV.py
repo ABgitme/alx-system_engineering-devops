@@ -41,20 +41,11 @@ def get_employee_todo_progress(employee_id):
     # print(f"{len(completed_tasks)}/{total_tasks}: number of completed tasks")
 
     # Export to CSV
-    filename = f"{user_id}.csv"
-    with open(filename, 'w', newline='') as csvfile:
-        fieldnames = ['USER_ID', 'USERNAME',
-                      'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        # writer.writeheader()
-        for task in todos_data:
-            writer.writerow({
-                'USER_ID': user_id,
-                'USERNAME': employee_name,
-                'TASK_COMPLETED_STATUS':
-                    "True" if task['completed'] else "False",
-                'TASK_TITLE': task['title']
-            })
+    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        [writer.writerow(
+            [user_id, employee_name, t.get("completed"), t.get("title")]
+         ) for t in todos_data]
 
 
 if __name__ == "__main__":
