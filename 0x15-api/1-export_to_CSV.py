@@ -3,9 +3,10 @@
     Provides details on the progress of the
     TODO list for a specified employee ID.
 """
+import csv
 import requests
 import sys
-import csv
+
 
 
 def get_employee_todo_progress(employee_id):
@@ -46,7 +47,7 @@ def get_employee_todo_progress(employee_id):
         fieldnames = ['USER_ID', 'USERNAME',
                       'TASK_COMPLETED_STATUS', 'TASK_TITLE']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
+        # writer.writeheader()
         for task in todos_data:
             writer.writerow({
                 'USER_ID': user_id,
