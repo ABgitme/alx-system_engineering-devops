@@ -6,7 +6,9 @@ import requests
 
 
 def number_of_subscribers(subreddit):
-    # URL for the Reddit API endpoint to get subreddit information
+    """
+        URL for the Reddit API endpoint to get subreddit information
+    """
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
 
     # Adding a custom User-Agent header to prevent Too Many Requests error
