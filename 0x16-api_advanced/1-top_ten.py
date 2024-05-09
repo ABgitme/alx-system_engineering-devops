@@ -26,14 +26,14 @@ def top_ten(subreddit):
         prints None.
 
     """
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
-    headers = {"User-Agent": "your_user_agent"}
+    response = requests.get(
+        f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10",
+        headers={"User-Agent": "My-User-Agent"},
+        allow_redirects=False)
 
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        data = response.json()
-        for post in data['data']['children']:
-            print(post['data']['title'])
-    except requests.exceptions.HTTPError:
-        print("None")
+    if response.status_code >= 300:
+        print('None')
+    else:
+        [print(
+            child['data']['title'])
+            for child in response.json().get('data', {}).get('children', [])]
