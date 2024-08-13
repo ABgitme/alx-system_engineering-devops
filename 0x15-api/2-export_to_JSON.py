@@ -4,6 +4,7 @@
     TODO list for a specified employee ID.
 """
 import csv
+import json
 import requests
 import sys
 
@@ -40,6 +41,12 @@ def get_employee_todo_progress(employee_id):
         [writer.writerow(
             [user_id, employee_name, t.get("completed"), t.get("title")]
          ) for t in todos_data]
+    # Export to JSON
+    json_data = {str(user_id): [{"task":t.get("title"),
+                                 "completed":t.get("completed"),
+                                 "username": employee_name} for t in todos_data]}
+    with open(f"{user_id}.json", "w") as jsonfile:
+        json.dump(json_data, jsonfile, indent=4)
 
 
 if __name__ == "__main__":
